@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Money Clicker Game</title>
+    <style>
+        /* A little CSS to make it look clean and centered */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f2f5;
+            margin-top: 100px;
+        }
+        .game-container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            display: inline-block;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .money-display {
+            font-size: 2.5rem;
+            color: #2e7d32;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        .click-btn {
+            font-size: 1.5rem;
+            padding: 15px 30px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 4px #2e7d32;
+        }
+        .click-btn:active {
+            box-shadow: 0 0 #2e7d32;
+            transform: translateY(4px);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="game-container">
+        <!-- 1. The Score Counter -->
+        <div class="money-display">$<span id="money-count">0</span></div>
+        
+        <!-- 2. The Clicker Button -->
+        <button type="button" class="click-btn" id="click-me-btn">Click For Money!</button>
+    </div>
+
+    <!-- 3. The Game Logic -->
+    <script>
+        // Track the current money balance
+        let demoMoney = 0;
+
+        // Grab the elements from our HTML so code can use them
+        const moneyDisplay = document.getElementById('money-count');
+        const clickButton = document.getElementById('click-me-btn');
+
+        // Listen for when someone clicks the button
+        clickButton.addEventListener('click', () => {
+            // Add 2 to the money total
+            demoMoney = demoMoney + 2; 
+            
+            // Update the HTML text to show the new amount
+            moneyDisplay.textContent = demoMoney;
+        });
+    </script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Money Clicker with Shop Upgrades</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 40px 20px;
+        }
+        .game-container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            display: inline-block;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            max-width: 420px;
+            width: 100%;
+        }
+        .money-display {
+            font-size: 2.8rem;
+            color: #2e7d32;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        .click-btn {
+            font-size: 1.5rem;
+            padding: 15px 30px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 4px #2e7d32;
+            width: 100%;
+            margin-bottom: 30px;
+        }
+        .click-btn:active {
+            box-shadow: 0 0 #2e7d32;
+            transform: translateY(4px);
+        }
+        
+        /* --- SHOP STYLES --- */
+        .shop-container {
+            border-top: 2px solid #e0e0e0;
+            padding-top: 20px;
+            text-align: left;
+        }
+        .shop-title {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: #333;
+            text-align: center;
+        }
+        .upgrade-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #f9f9f9;
+            padding: 12px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+        }
+        .upgrade-info {
+            font-size: 0.9rem;
+            color: #555;
+        }
+        .upgrade-name {
+            font-weight: bold;
+            color: #222;
+            font-size: 1rem;
+        }
+        .buy-btn {
+            background-color: #0288d1;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            min-width: 100px;
+        }
+        .buy-btn:disabled {
+            background-color: #b0bec5;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="game-container">
+        <!-- Score Display -->
+        <div class="money-display">$<span id="money-count">0</span></div>
+        
+        <!-- Main Clicker Button -->
+        <button type="button" class="click-btn" id="click-me-btn">Click For Money!</button>
+
+        <!-- Upgrade Shop -->
+        <div class="shop-container">
+            <div class="shop-title">🛒 Upgrade Shop</div>
+            
+            <!-- Upgrade 1: Multiplier -->
+            <div class="upgrade-item">
+                <div class="upgrade-info">
+                    <div class="upgrade-name">Golden Mouse</div>
+                    <div>+1 per click (Owned: <span id="count-multiplier">0</span>)</div>
+                </div>
+                <button type="button" class="buy-btn" id="buy-multiplier">Cost: $15</button>
+            </div>
+
+            <!-- Upgrade 2: Auto Clicker -->
+            <div class="upgrade-item">
+                <div class="upgrade-info">
+                    <div class="upgrade-name">Auto-Clicker Bot</div>
+                    <div>+$1 base/sec (Owned: <span id="count-autoclicker">0</span>)</div>
+                </div>
+                <button type="button" class="buy-btn" id="buy-autoclicker">Cost: $50</button>
+            </div>
+
+            <!-- Upgrade 3: Time Warp (NEW) -->
+            <div class="upgrade-item">
+                <div class="upgrade-info">
+                    <div class="upgrade-name">Quantum Clock</div>
+                    <div>Auto speed x<span id="display-warp-speed">1.0</span> (Owned: <span id="count-timewarp">0</span>)</div>
+                </div>
+                <button type="button" class="buy-btn" id="buy-timewarp">Cost: $250</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Logic -->
+    <script>
+        // Game variables
+        let money = 0;
+        let moneyPerClick = 1;
+        let baseMoneyPerSecond = 0;
+        let timeWarpMultiplier = 1.0;
+
+        // Upgrade costs
+        let multiplierCost = 15;
+        let autoclickerCost = 50;
+        let timewarpCost = 250;
+
+        // Upgrade counts
+        let multiplierCount = 0;
+        let autoclickerCount = 0;
+        let timewarpCount = 0;
+
+       
+        
+        const buyMultiplierBtn = document.getElementById('buy-multiplier');
+        const countMultiplierDisplay = document.getElementById('count-multiplier');
+        
+        const buyAutoclickerBtn = document.getElementById('buy-autoclicker');
+        const countAutoclickerDisplay = document.getElementById('count-autoclicker');
+
+        const buyTimewarpBtn = document.getElementById('buy-timewarp');
+        const countTimewarpDisplay = document.getElementById('count-timewarp');
+        const displayWarpSpeed = document.getElementById('display-warp-speed');
+
+        // Main click action
+        clickButton.addEventListener('click', () => {
+            money += moneyPerClick;
+            updateUI();
+        });
+
+        // Buy Multiplier Logic
+        buyMultiplierBtn.addEventListener('click', () => {
+            if (money >= multiplierCost) {
+                money -= multiplierCost;
+                multiplierCount++;
+                moneyPerClick += 1;
+                multiplierCost = Math.round(multiplierCost * 1.5);
+                updateUI();
+            }
+        });
+
+        // Buy Auto-Clicker Logic
+        buyAutoclickerBtn.addEventListener('click', () => {
+            if (money >= autoclickerCost) {
+                money -= autoclickerCost;
+                autoclickerCount++;
+                baseMoneyPerSecond += 1;
+                autoclickerCost = Math.round(autoclickerCost * 1.5);
+                updateUI();
+            }
+        });
+
+        // Buy Time Warp Logic (NEW)
+        buyTimewarpBtn.addEventListener('click', () => {
+            if (money >= timewarpCost) {
+                money -= timewarpCost;
+                timewarpCount++;
+                timeWarpMultiplier = parseFloat((timeWarpMultiplier + 0.5).toFixed(1)); // Add 50% more speed
+                timewarpCost = Math.round(timewarpCost * 2.2); // Scaled higher because it's powerful
+                updateUI();
+            }
+        });
+
+        // Passive Income Loop (Runs every 1 second)
+        setInterval(() => {
+            if (baseMoneyPerSecond > 0) {
+                // Calculate income dynamically using the time modifier
+                let totalPassiveIncome = Math.round(baseMoneyPerSecond * timeWarpMultiplier);
+                money += totalPassiveIncome;
+                updateUI();
+            }
+        }, 1000);
+
+        // Update everything on the screen and manage button states
+        function updateUI() {
+            moneyDisplay.textContent = money;
+            
+            // Update Shop Text
+            buyMultiplierBtn.textContent = `Cost: $${multiplierCost}`;
+            countMultiplierDisplay.textContent = multiplierCount;
+            
+            buyAutoclickerBtn.textContent = `Cost: $${autoclickerCost}`;
+            countAutoclickerDisplay.textContent = autoclickerCount;
+
+            buyTimewarpBtn.textContent = `Cost: $${timewarpCost}`;
+            countTimewarpDisplay.textContent = timewarpCount;
+            displayWarpSpeed.textContent = timeWarpMultiplier.toFixed(1);
+
+            // Enable/Disable buttons based on what player can afford
+            buyMultiplierBtn.disabled = money < multiplierCost;
+            buyAutoclickerBtn.disabled = money < autoclickerCost;
+            buyTimewarpBtn.disabled = money < timewarpCost;
+        }
+
+        // Run UI update at start to disable buttons correctly
+        updateUI();
+    </script>
+
+</body>
+</html>
