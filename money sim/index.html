@@ -3,80 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Money Clicker Game</title>
-    <style>
-        /* A little CSS to make it look clean and centered */
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #f0f2f5;
-            margin-top: 100px;
-        }
-        .game-container {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            display: inline-block;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-        .money-display {
-            font-size: 2.5rem;
-            color: #2e7d32;
-            margin-bottom: 20px;
-            font-weight: bold;
-        }
-        .click-btn {
-            font-size: 1.5rem;
-            padding: 15px 30px;
-            background-color: #4caf50;
-            color: white;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            box-shadow: 0 4px #2e7d32;
-        }
-        .click-btn:active {
-            box-shadow: 0 0 #2e7d32;
-            transform: translateY(4px);
-        }
-    </style>
-</head>
-<body>
-
-    <div class="game-container">
-        <!-- 1. The Score Counter -->
-        <div class="money-display">$<span id="money-count">0</span></div>
-        
-        <!-- 2. The Clicker Button -->
-        <button type="button" class="click-btn" id="click-me-btn">Click For Money!</button>
-    </div>
-
-    <!-- 3. The Game Logic -->
-    <script>
-        // Track the current money balance
-        let demoMoney = 0;
-
-        // Grab the elements from our HTML so code can use them
-        const moneyDisplay = document.getElementById('money-count');
-        const clickButton = document.getElementById('click-me-btn');
-
-        // Listen for when someone clicks the button
-        clickButton.addEventListener('click', () => {
-            // Add 2 to the money total
-            demoMoney = demoMoney + 2; 
-            
-            // Update the HTML text to show the new amount
-            moneyDisplay.textContent = demoMoney;
-        });
-    </script>
-
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Money Clicker with Shop Upgrades</title>
     <style>
         body {
@@ -236,6 +162,9 @@
         const buyTimewarpBtn = document.getElementById('buy-timewarp');
         const countTimewarpDisplay = document.getElementById('count-timewarp');
         const displayWarpSpeed = document.getElementById('display-warp-speed');
+
+        const moneyDisplay = document.getElementById('money-count');
+        const clickButton = document.getElementById('click-me-btn');
 
         // Main click action
         clickButton.addEventListener('click', () => {
